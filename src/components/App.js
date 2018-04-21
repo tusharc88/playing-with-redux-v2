@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TodoApp from "./components/TodoApp";
+import TodoApp from "./TodoApp";
 
 const styles = {
   fontFamily: "sans-serif",
