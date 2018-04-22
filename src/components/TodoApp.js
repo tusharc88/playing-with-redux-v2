@@ -7,7 +7,7 @@ import { ALL_FILTER } from '../constants';
 const TodoApp = ({ filter }) => (
   <div>
     <AddTodoWrapper />
-    <TodoListWrapper filter={!filter ? ALL_FILTER : filter} />
+    <TodoListWrapper />
     <Filters />
   </div>
 );

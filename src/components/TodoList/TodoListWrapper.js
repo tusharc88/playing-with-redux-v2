@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { toggleTodo } from '../../actions/actionCreators';
 import { ALL_FILTER, ACTIVE_FILTER, COMPLETED_FILTER } from '../../constants';
 import TodoList from './TodoList';
@@ -45,9 +46,9 @@ class TodoListWrapper extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, { match: { params: { filter } } }) => ({
   todos: state.todos,
-  filter: ownProps.filter,
+  filter: filter,
   // visibilityFilter: state.visibilityFilter
 });
 
@@ -55,4 +56,6 @@ const mapDispatchToProps = dispatch => ({
   toggleTodo: id => dispatch(toggleTodo(id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoListWrapper);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TodoListWrapper)
+);
