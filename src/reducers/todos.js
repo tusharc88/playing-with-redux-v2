@@ -21,7 +21,7 @@ const todos = (state = [], action) => {
       return [...state, todo(undefined, action)];
     case TOGGLE_TODO:
       const selctedTodo = state.filter(val => val.id === action.id)[0];
-      console.log(selctedTodo);
+      // console.log(selctedTodo);
       state = state.filter(val => val.id !== action.id);
       return [...state, todo(selctedTodo, action)];
     default:

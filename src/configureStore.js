@@ -5,12 +5,13 @@ import rootReducer from "./reducers/rootReducer";
 import { loadState, saveState } from "./localStorage";
 
 const configureStore = () => {
-  const persistedState = loadState();
+  // const persistedState = loadState();
+  const initialState = {};
   const middleware = [thunk];
 
   const store = createStore(
     rootReducer,
-    persistedState,
+    initialState,
     compose(
       applyMiddleware(...middleware),
       window.__REDUX_DEVTOOLS_EXTENSION__ &&
@@ -18,13 +19,13 @@ const configureStore = () => {
     )
   );
 
-  store.subscribe(
-    throttle(() => {
-      saveState({
-        todos: store.getState().todos
-      });
-    })
-  );
+  // store.subscribe(
+  //   throttle(() => {
+  //     saveState({
+  //       todos: store.getState().todos
+  //     });
+  //   })
+  // );
 
   return store;
 };
