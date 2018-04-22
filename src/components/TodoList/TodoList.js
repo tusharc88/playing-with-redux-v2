@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Todo from "./Todo";
 
 const TodoList = ({ todos, onTodoClick }) => (
@@ -13,5 +14,15 @@ const TodoList = ({ todos, onTodoClick }) => (
     ))}
   </ul>
 );
+
+Todo.propTypes = {
+  onTodoClick: PropTypes.func.isRequired,
+  todos: PropTypes.array.isRequired
+};
+
+Todo.defaultProps = {
+  onTodoClick: () => {},
+  todos: []
+};
 
 export default TodoList;

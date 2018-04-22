@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const AddTodo = ({ handleSubmit }) => {
   const onFormSubmit = e => {
@@ -15,6 +16,14 @@ const AddTodo = ({ handleSubmit }) => {
       </form>
     </div>
   );
+};
+
+AddTodo.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
+};
+
+AddTodo.defaultProps = {
+  handleSubmit: () => {}
 };
 
 export default AddTodo;

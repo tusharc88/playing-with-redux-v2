@@ -1,29 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import FilterLink from "./FilterLink";
 
-class Filters extends Component {
-  render() {
-    const { visibilityFilter } = this.props;
+const Filters = () => (
+  <div>
+    <FilterLink filter="ALL">All</FilterLink>
+    <FilterLink filter="ACTIVE">Active</FilterLink>
+    <FilterLink filter="COMPLETED">Completed</FilterLink>
+  </div>
+);
 
-    return (
-      <div>
-        <FilterLink filter="ALL" currentFilter={visibilityFilter}>
-          All
-        </FilterLink>
-        <FilterLink filter="ACTIVE" currentFilter={visibilityFilter}>
-          Active
-        </FilterLink>
-        <FilterLink filter="COMPLETED" currentFilter={visibilityFilter}>
-          Completed
-        </FilterLink>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
-  visibilityFilter: state.visibilityFilter
-});
-
-export default connect(mapStateToProps, null)(Filters);
+export default Filters;

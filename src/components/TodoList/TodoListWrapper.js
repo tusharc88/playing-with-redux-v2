@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { toggleTodo } from "../../actions/actionCreators";
 import TodoList from "./TodoList";
 
 class TodoListWrapper extends Component {
+  static propTypes = {
+    todos: PropTypes.array.isRequired,
+    visibilityFilter: PropTypes.string.isRequired
+  };
+
+  static defaultProps = {
+    todos: [],
+    visibilityFilter: "ALL"
+  };
+
   getFilteredTodos = ({ filter, todos }) => {
     switch (filter) {
       case "ALL":
