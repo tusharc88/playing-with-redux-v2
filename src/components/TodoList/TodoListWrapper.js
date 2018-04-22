@@ -6,6 +6,19 @@ import { toggleTodo } from '../../actions/actionCreators';
 import { ALL_FILTER, ACTIVE_FILTER, COMPLETED_FILTER } from '../../constants';
 import TodoList from './TodoList';
 
+const getFilteredTodos = ({ filter, todos }) => {
+  switch (filter) {
+    case ALL_FILTER:
+      return todos;
+    case ACTIVE_FILTER:
+      return todos.filter(todo => todo.completed === false);
+    case COMPLETED_FILTER:
+      return todos.filter(todo => todo.completed === true);
+    default:
+      return todos;
+  }
+};
+
 class TodoListWrapper extends Component {
   static propTypes = {
     todos: PropTypes.array.isRequired,
@@ -17,27 +30,11 @@ class TodoListWrapper extends Component {
     filter: ALL_FILTER,
   };
 
-  getFilteredTodos = ({ filter, todos }) => {
-    switch (filter) {
-      case ALL_FILTER:
-        return todos;
-      case ACTIVE_FILTER:
-        return todos.filter(todo => todo.completed === false);
-      case COMPLETED_FILTER:
-        return todos.filter(todo => todo.completed === true);
-      default:
-        return todos;
-    }
-  };
-
   render() {
     const { toggleTodo, todos, filter } = this.props;
     return (
       <TodoList
-        todos={this.getFilteredTodos({
-          filter: filter,
-          todos: todos,
-        })}
+        todos={todos}
         onTodoClick={id => {
           toggleTodo(id);
         }}
@@ -47,7 +44,7 @@ class TodoListWrapper extends Component {
 }
 
 const mapStateToProps = (state, { match: { params: { filter } } }) => ({
-  todos: state.todos,
+  todos: getFilteredTodos({ filter, todos: state.todos }),
   filter: filter,
   // visibilityFilter: state.visibilityFilter
 });
