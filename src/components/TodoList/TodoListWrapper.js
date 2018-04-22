@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { toggleTodo } from '../../actions/actionCreators';
-import { getFilteredTodos } from '../../reducers/rootReducer';
+import { getVisibleTodos } from '../../selectors/todos';
 import TodoList from './TodoList';
 import { ALL_FILTER } from '../../constants';
 
@@ -32,7 +32,7 @@ class TodoListWrapper extends Component {
 }
 
 const mapStateToProps = (state, { match: { params: { filter } } }) => ({
-  todos: getFilteredTodos(state, filter),
+  todos: getVisibleTodos(state, filter),
   filter: filter,
   // visibilityFilter: state.visibilityFilter
 });
