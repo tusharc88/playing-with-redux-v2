@@ -3,21 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { toggleTodo } from '../../actions/actionCreators';
-import { ALL_FILTER, ACTIVE_FILTER, COMPLETED_FILTER } from '../../constants';
+import { getFilteredTodos } from '../../reducers/rootReducer';
 import TodoList from './TodoList';
-
-const getFilteredTodos = ({ filter, todos }) => {
-  switch (filter) {
-    case ALL_FILTER:
-      return todos;
-    case ACTIVE_FILTER:
-      return todos.filter(todo => todo.completed === false);
-    case COMPLETED_FILTER:
-      return todos.filter(todo => todo.completed === true);
-    default:
-      return todos;
-  }
-};
+import { ALL_FILTER } from '../../constants';
 
 class TodoListWrapper extends Component {
   static propTypes = {
@@ -44,7 +32,7 @@ class TodoListWrapper extends Component {
 }
 
 const mapStateToProps = (state, { match: { params: { filter } } }) => ({
-  todos: getFilteredTodos({ filter, todos: state.todos }),
+  todos: getFilteredTodos(state, filter),
   filter: filter,
   // visibilityFilter: state.visibilityFilter
 });
