@@ -1,12 +1,12 @@
-import React from "react";
-import LinkWrapper from "./LinkWrapper";
-import { ALL_FILTER, ACTIVE_FILTER, COMPLETED_FILTER } from "../../constants";
+import React from 'react';
+import FilterLink from './FilterLink';
+import { ALL_FILTER, ACTIVE_FILTER, COMPLETED_FILTER } from '../../constants';
 
 const Filters = () => (
   <div>
-    <LinkWrapper filter={ALL_FILTER}>All</LinkWrapper>
-    <LinkWrapper filter={ACTIVE_FILTER}>Active</LinkWrapper>
-    <LinkWrapper filter={COMPLETED_FILTER}>Completed</LinkWrapper>
+    <FilterLink filter={`/${ALL_FILTER}`}>All</FilterLink>
+    <FilterLink filter={`/${ACTIVE_FILTER}`}>Active</FilterLink>
+    <FilterLink filter={`/${COMPLETED_FILTER}`}>Completed</FilterLink>
   </div>
 );
 

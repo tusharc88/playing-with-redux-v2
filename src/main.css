@@ -9,8 +9,8 @@ a:link {
 }
 a:visited {
   /* Applies to all visited links */
-  text-decoration: underline;
-  color: #f0f;
+  /* text-decoration: underline;
+  color: #f0f; */
 }
 a:hover {
   /* Applies to links under the pointer */
@@ -19,8 +19,8 @@ a:hover {
 }
 a:active {
   /* Applies to activated links */
-  text-decoration: none;
-  color: white;
+  /* text-decoration: none;
+  color: white; */
 }
 
 ul {
