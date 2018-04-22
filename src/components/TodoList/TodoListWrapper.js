@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { toggleTodo } from "../../actions/actionCreators";
+import { ALL_FILTER, ACTIVE_FILTER, COMPLETED_FILTER } from "../../constants";
 import TodoList from "./TodoList";
 
 class TodoListWrapper extends Component {
@@ -12,16 +13,16 @@ class TodoListWrapper extends Component {
 
   static defaultProps = {
     todos: [],
-    visibilityFilter: "ALL"
+    visibilityFilter: ALL_FILTER
   };
 
   getFilteredTodos = ({ filter, todos }) => {
     switch (filter) {
-      case "ALL":
+      case ALL_FILTER:
         return todos;
-      case "ACTIVE":
+      case ACTIVE_FILTER:
         return todos.filter(todo => todo.completed === false);
-      case "COMPLETED":
+      case COMPLETED_FILTER:
         return todos.filter(todo => todo.completed === true);
       default:
         return todos;

@@ -13,7 +13,7 @@ Link.propTypes = {
 };
 
 Link.defaultProps = {
-  children: "Link",
+  children: "",
   onClick: () => {}
 };
 

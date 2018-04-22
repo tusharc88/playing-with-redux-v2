@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from "../actions/types";
+import { ADD_TODO, TOGGLE_TODO } from "../constants";
 
 const todo = (state, action) => {
   switch (action.type) {
@@ -21,7 +21,6 @@ const todos = (state = [], action) => {
     case ADD_TODO:
       return [...state, todo(undefined, action)];
     case TOGGLE_TODO:
-      // const selctedTodo = state.filter(val => val.id === action.id)[0];
       return state.map(t => todo(t, action));
     default:
       return state;
