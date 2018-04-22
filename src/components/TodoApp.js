@@ -1,35 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addTodo, toggleTodo } from "../actions/actions";
+import AddTodo from "./AddTodo";
+import TodoList from "./TodoList";
 
 class TodoApp extends Component {
   render() {
     return (
       <div>
-        <input ref={node => (this.input = node)} />
-        <button
-          onClick={() => {
-            this.props.addTodo(this.input.value);
-            this.input.value = "";
+        <AddTodo
+          handleSubmit={e => {
+            e.preventDefault();
+            const value = e.target.add.value.trim();
+            if (!value) return;
+            this.props.addTodo(value);
+            e.target.add.value = "";
           }}
-        >
-          Add Todo
-        </button>
-        <ul>
-          {this.props.todos.map(todo => (
-            <li
-              onClick={() => {
-                this.props.toggleTodo(todo.id);
-              }}
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none"
-              }}
-              key={todo.id}
-            >
-              {todo.text}
-            </li>
-          ))}
-        </ul>
+        />
+        <TodoList
+          todos={this.props.todos}
+          onTodoClick={id => {
+            this.props.toggleTodo(id);
+          }}
+        />
       </div>
     );
   }
