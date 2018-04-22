@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { toggleTodo } from '../../actions/actionCreators';
+import { toggleTodo, receiveTodos } from '../../actions/actionCreators';
 import { getVisibleTodos } from '../../selectors/todos';
 import TodoList from './TodoList';
 import { fetchTodos } from '../../api';
@@ -20,18 +20,22 @@ class TodoListWrapper extends Component {
   };
 
   componentDidMount() {
-    fetchTodos(this.props.filter).then(todos =>
-      console.log(this.props.filter, todos)
-    );
+    this.fetchData();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.filter !== prevProps.filter) {
-      fetchTodos(this.props.filter).then(todos =>
-        console.log(this.props.filter, todos)
-      );
+      this.fetchData();
     }
   }
+
+  fetchData = () => {
+    const { filter, receiveTodos } = this.props;
+    fetchTodos(filter).then(todos =>
+      // console.log(this.props.filter, todos)
+      receiveTodos(filter, todos)
+    );
+  };
 
   render() {
     const { toggleTodo, todos, filter } = this.props;
@@ -57,6 +61,7 @@ const mapStateToProps = (state, { match: { params: { filter } } }) => {
 
 const mapDispatchToProps = dispatch => ({
   toggleTodo: id => dispatch(toggleTodo(id)),
+  receiveTodos: (filter, todos) => dispatch(receiveTodos(filter, todos)),
 });
 
 export default withRouter(
