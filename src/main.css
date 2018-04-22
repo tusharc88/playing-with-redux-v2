@@ -1,5 +1,5 @@
 a {
-  margin: 5px;
+  margin: 10px;
 }
 
 a:link {
@@ -21,4 +21,8 @@ a:active {
   /* Applies to activated links */
   text-decoration: none;
   color: white;
+}
+
+ul {
+  list-style-type: none;
 }

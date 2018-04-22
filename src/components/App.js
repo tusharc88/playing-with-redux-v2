@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TodoApp from "./TodoApp";
+import "../main.css";
 
 const styles = {
   fontFamily: "sans-serif",
@@ -8,7 +9,6 @@ const styles = {
 
 class App extends Component {
   render() {
-    // console.log(store.getState());
     return (
       <div style={styles}>
         <h2>Start editing to see some magic happen {"\u2728"}</h2>
