@@ -1,15 +1,18 @@
 import { ALL_FILTER, ACTIVE_FILTER, COMPLETED_FILTER } from '../constants';
 
+const getAllTodos = state => state.allIds.map(id => state.byId[id]);
+
 const getFilteredTodos = (state, filter) => {
+  const allTodos = getAllTodos(state);
   switch (filter) {
     case ALL_FILTER:
-      return state;
+      return allTodos;
     case ACTIVE_FILTER:
-      return state.filter(todo => todo.completed === false);
+      return allTodos.filter(todo => todo.completed === false);
     case COMPLETED_FILTER:
-      return state.filter(todo => todo.completed === true);
+      return allTodos.filter(todo => todo.completed === true);
     default:
-      return state;
+      return allTodos;
   }
 };
 
