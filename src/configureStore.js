@@ -4,6 +4,7 @@ import throttle from 'lodash/throttle';
 import rootReducer from './reducers/rootReducer';
 import { loadState, saveState } from './localStorage';
 
+// middleware (redux-logger npm package)
 // const addLoggingToDispatch = store => {
 //   const rawDispatch = store.dispatch;
 //   if (!console.group) return rawDispatch;
@@ -20,15 +21,16 @@ import { loadState, saveState } from './localStorage';
 //   };
 // };
 
-const addPromiseSupportToDispatch = store => {
-  const rawDispatch = store.dispatch;
-  return action => {
-    if (typeof action.then === 'function') {
-      return action.then(rawDispatch);
-    }
-    return rawDispatch;
-  };
-};
+// middleware (redux-promise npm package)
+// const addPromiseSupportToDispatch = store => {
+//   const rawDispatch = store.dispatch;
+//   return action => {
+//     if (typeof action.then === 'function') {
+//       return action.then(rawDispatch);
+//     }
+//     return rawDispatch;
+//   };
+// };
 
 const configureStore = () => {
   // const persistedState = loadState();
@@ -45,7 +47,7 @@ const configureStore = () => {
     )
   );
 
-  store.dispatch = addPromiseSupportToDispatch(store);
+  // store.dispatch = addPromiseSupportToDispatch(store);
 
   // if (process.env.NODE_ENV !== 'production') {
   //   store.dispatch = addLoggingToDispatch(store);

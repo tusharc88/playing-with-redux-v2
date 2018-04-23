@@ -59,6 +59,7 @@ const mapStateToProps = (state, { match: { params: { filter } } }) => {
 
 const mapDispatchToProps = dispatch => ({
   toggleTodo: id => dispatch(toggleTodo(id)),
+  fetchTodos: filter => dispatch(fetchTodos(filter)),
   // receiveTodos: (filter, todos) => dispatch(receiveTodos(filter, todos)),
 });
 
