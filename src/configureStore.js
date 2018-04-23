@@ -35,9 +35,10 @@ const configureStore = () => {
     )
   );
 
-  if (process.env.NODE_ENV !== 'production') {
-    store.dispatch = addLoggingToDispatch(store);
-  }
+  // if (process.env.NODE_ENV !== 'production') {
+  //   store.dispatch = addLoggingToDispatch(store);
+  // }
+
   // store.subscribe(
   //   throttle(() => {
   //     saveState({

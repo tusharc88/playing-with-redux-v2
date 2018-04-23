@@ -19,7 +19,7 @@ class TodoListWrapper extends Component {
   };
 
   render() {
-    const { toggleTodo, todos, filter } = this.props;
+    const { toggleTodo, todos } = this.props;
     return (
       <TodoList
         todos={todos}
@@ -32,7 +32,7 @@ class TodoListWrapper extends Component {
 }
 
 const mapStateToProps = (state, { match: { params: { filter } } }) => ({
-  todos: getVisibleTodos(state, filter),
+  todos: getVisibleTodos(state, filter || ALL_FILTER),
   filter: filter,
   // visibilityFilter: state.visibilityFilter
 });
