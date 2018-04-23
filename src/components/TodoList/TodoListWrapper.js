@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { toggleTodo } from '../../actions/actionCreators';
+import { toggleTodo, fetchTodos } from '../../actions/actionCreators';
 import { getVisibleTodos } from '../../selectors/todos';
 import TodoList from './TodoList';
-import { fetchTodos } from '../../apiCalls';
+// import { fetchTodos } from '../../actions';
 // import { fetchTodos } from '../../api';
 import { ALL_FILTER } from '../../constants';
 
@@ -31,7 +31,8 @@ class TodoListWrapper extends Component {
   }
 
   fetchData = () => {
-    const { filter, receiveTodos } = this.props;
+    // console.log('fetchData');
+    const { fetchTodos, filter } = this.props;
     fetchTodos(filter);
   };
 
@@ -57,9 +58,12 @@ const mapStateToProps = (state, { match: { params: { filter } } }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   toggleTodo: id => dispatch(toggleTodo(id)),
-  fetchTodos: filter => dispatch(fetchTodos(filter)),
+  fetchTodos: filter => {
+    // console.log(ownProps.filter);
+    dispatch(fetchTodos(filter));
+  },
   // receiveTodos: (filter, todos) => dispatch(receiveTodos(filter, todos)),
 });
 

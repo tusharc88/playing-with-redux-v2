@@ -1,4 +1,5 @@
 import { v4 } from 'node-uuid';
+import * as api from '../api';
 import {
   ADD_TODO,
   TOGGLE_TODO,
@@ -22,6 +23,14 @@ export const receiveTodos = (filter, todos) => ({
   filter,
   todos,
 });
+
+export const fetchTodos = filter => dispatch => {
+  console.log(filter);
+  api.fetchTodos(filter).then(todos => {
+    console.log(todos);
+    dispatch(receiveTodos(filter, todos));
+  });
+};
 
 // export const setVisibilityFilter = filter => ({
 //   type: SET_VISIBILITY_FILTER,

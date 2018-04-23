@@ -19,7 +19,7 @@ import {
 // };
 
 const byId = (state = {}, action) => {
-  console.log('byId');
+  // console.log('byId');
   switch (action.type) {
     // case ADD_TODO:
     // case TOGGLE_TODO:
@@ -40,7 +40,7 @@ const byId = (state = {}, action) => {
 };
 
 const allIds = (state = [], action) => {
-  console.log('allIds');
+  // console.log('allIds');
   if (action.filter !== ALL_FILTER) {
     return state;
   }
@@ -55,7 +55,7 @@ const allIds = (state = [], action) => {
 };
 
 const activeIds = (state = [], action) => {
-  console.log('activeIds');
+  // console.log('activeIds');
   if (action.filter !== ACTIVE_FILTER) {
     return state;
   }
@@ -68,7 +68,7 @@ const activeIds = (state = [], action) => {
 };
 
 const completedIds = (state = [], action) => {
-  console.log('completedIds');
+  // console.log('completedIds');
   if (action.filter !== COMPLETED_FILTER) {
     return state;
   }
